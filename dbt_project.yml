@@ -35,8 +35,18 @@ clean-targets:         # directories to be removed by `dbt clean`
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 
+
 models:
   my_new_project:
     # Applies to all files under models/example/
-    example:
+    
+     staging:
       +materialized: table
+      +transient: false
+     DBT_Stage_tables:
+      +materialized: table
+snapshots:
+    my_new_project:
+    +target_schema: snapshots
+
+
